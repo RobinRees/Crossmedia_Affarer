@@ -69,3 +69,8 @@ navigator.geolocation.watchPosition(
     enableHighAccuracy: true
   }
 );
+
+map.on("click", function (e) {
+  console.log("Koordinater:", e.latlng);
+  alert(`Lat: ${e.latlng.lat}, Lng: ${e.latlng.lng}`);
+});
