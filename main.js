@@ -1,4 +1,4 @@
-alert("NYYY")
+alert("123")
 
 // 🗺️ Starta karta (Malmö)
 const map = L.map("map").setView([55.5833, 13.0333], 15);
