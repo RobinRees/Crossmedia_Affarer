@@ -1,10 +1,10 @@
-alert("ny Version 123")
-
 // 🗺️ Starta karta (Malmö)
 const map = L.map("map").setView([55.5833, 13.0333], 15);
 
-// 🌍 OpenStreetMap
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+// 🌍 Mörk karta (snyggare för spel)
+L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+  attribution: '&copy; OpenStreetMap & CARTO'
+}).addTo(map);
 
 // 🔵 Spelarens prick
 let playerCircle = L.circle([55.5833, 13.0333], {
@@ -22,16 +22,30 @@ let accuracyCircle = L.circle([55.5833, 13.0333], {
   fillOpacity: 0.1
 }).addTo(map);
 
-// 🧍 NPC
+// 🧍 NPC (Doris)
 const npc = {
-  name: "Gustaf",
-  coords: [55.5838, 13.0340],
+  name: "Doris",
+  coords: [55.608856865560334, 12.994557023048403],
   radius: 50,
   visited: false
 };
 
-// Visa NPC på kartan
-L.marker(npc.coords).addTo(map).bindPopup("NPC: Gustaf");
+// 🖼️ Rund NPC ikon
+const dorisIcon = L.divIcon({
+  className: "",
+  html: `
+    <div class="npc-wrapper">
+      <img src="doris.png" />
+    </div>
+  `,
+  iconSize: [70, 70],
+  iconAnchor: [35, 35]
+});
+
+// Lägg ut Doris på kartan
+L.marker(npc.coords, { icon: dorisIcon })
+  .addTo(map)
+  .bindPopup("Doris är här");
 
 // 📏 Kolla avstånd
 function checkDistance(playerPos) {
@@ -39,7 +53,7 @@ function checkDistance(playerPos) {
 
   if (dist < npc.radius && !npc.visited) {
     npc.visited = true;
-    alert("Du möter Gustaf!");
+    alert("Du möter Doris!");
   }
 }
 
@@ -52,7 +66,7 @@ navigator.geolocation.watchPosition(
 
     const playerPos = [lat, lng];
 
-    // 🔄 Uppdatera position
+    // 🔄 Uppdatera spelare
     playerCircle.setLatLng(playerPos);
     accuracyCircle.setLatLng(playerPos);
     accuracyCircle.setRadius(accuracy);
@@ -70,7 +84,7 @@ navigator.geolocation.watchPosition(
   }
 );
 
+// 🧪 Klicka på kartan för koordinater (debug)
 map.on("click", function (e) {
-  console.log("Koordinater:", e.latlng);
-  alert(`Lat: ${e.latlng.lat}, Lng: ${e.latlng.lng}`);
+  console.log(e.latlng);
 });

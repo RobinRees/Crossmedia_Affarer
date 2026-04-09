@@ -16,6 +16,33 @@
       height: 100vh;
       width: 100vw;
     }
+
+    /* 🧍 NPC styling */
+    .npc-wrapper {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid gold;
+      animation: pulse 2s infinite;
+    }
+
+    .npc-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px gold; }
+      50% { box-shadow: 0 0 25px gold; }
+      100% { box-shadow: 0 0 10px gold; }
+    }
+
+    /* 🎨 Kartfilter (valfritt men snyggt) */
+    .leaflet-container {
+      filter: sepia(30%) brightness(0.8);
+    }
   </style>
 </head>
 <body>
@@ -25,7 +52,7 @@
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-<script src="main.js"></script>
+<script src="main.js?v=1"></script>
 
 </body>
 </html>
