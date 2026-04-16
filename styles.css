@@ -3,7 +3,7 @@ body {
 }
 
 #map {
-  height: 80vh;
+  height: 60vh;
   width: 100vw;
 }
 
@@ -41,9 +41,45 @@ body {
 #header {
     height: 10vh;
     background-color: black;
+    text-align: center;
 }
 
 #footer {
-    height: 10vh;
+    height: 30vh;
     background-color: black;
+}
+
+#logotyp {
+    height: 15vh;
+}
+
+#dialogBox {
+    display: flex;
+}
+
+#textBox {
+    width: 100%;
+    color: white;
+    padding: 10px;
+}
+
+#name {
+    font-size: 70px;
+}
+
+#dialog {
+    font-size: 25px;
+}
+
+#paperdollImage {
+    margin: 2%;
+    width: 15vh;
+    height: 100vh;
+    background-image: url(/Images/Paperdoll/PaperdollDoris.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#paperdoll {
+    height: 100%;
 }
