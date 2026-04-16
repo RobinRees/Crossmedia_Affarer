@@ -8,6 +8,8 @@ const dialogIngridLeopold = [
     { "name": "Ingrid", "line": "Ska du också hekla och ha dig, jag har ju redan sagt att det inte var jag!" },
     { "name": "Leopold", "line": "..." },
     { "name": "Ingrid", "line": "Jaha, du är herrn´ som dom sa kan hjälpa mig! Låt mig berätta från början..." },
+    { "name": "Ingrid", "line": "Jag förklarade för dem att det är omöjligt att det skulle vara jag, då jag dagen innan hade kurerat min sjuka son. De gav sig inte, och antar att det måste vara jag för att jag arbetar vid vattnet. Men jag tror det är på grund av att jag inte räknas som “fint folk” i denna stad." },
+
 ]
 
 let currentIndex = 0;
