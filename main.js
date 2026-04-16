@@ -1,6 +1,6 @@
 // https://leafletjs.com/reference.html
 
-alert("123")
+alert("Updated 11:02")
 
 // 🗺️ Starta karta (Malmö)
 const map = L.map("map").setView([55.5833, 13.0333], 15);
