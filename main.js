@@ -1,3 +1,5 @@
+// https://leafletjs.com/reference.html
+
 alert("123")
 
 // 🗺️ Starta karta (Malmö)
@@ -56,6 +58,8 @@ function checkDistance(playerPos) {
   if (dist < npc.radius && !npc.visited) {
     npc.visited = true;
     alert("Du möter Doris!");
+    // Här kommer funktioner triggas för att prata med Doris specefikt. Vi kommer skapa
+    // UI osv i andra funktioner. 
   }
 }
 
