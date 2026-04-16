@@ -75,10 +75,6 @@ body {
 #paperdollImage {
     margin: 2%;
     width: 15vh;
-
-    background-image: url(./Images/Paperdoll/PaperdollDoris.png);
-    background-repeat: no-repeat;
-    background-size: contain;
 }
 
 #paperdoll {
