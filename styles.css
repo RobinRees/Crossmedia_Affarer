@@ -55,6 +55,7 @@ body {
 
 #dialogBox {
     display: flex;
+    height: 100%;
 }
 
 #textBox {
@@ -74,7 +75,7 @@ body {
 #paperdollImage {
     margin: 2%;
     width: 15vh;
-    height: 100vh;
+
     background-image: url(/Images/Paperdoll/PaperdollDoris.png);
     background-repeat: no-repeat;
     background-size: contain;
