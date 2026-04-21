@@ -13,7 +13,6 @@ const dialogIngridLeopold = [
     { "name": "Leopold", "line": "Så du var hemma kvällen när brottet begicks?" },
     { "name": "Ingrid", "line": "Ja, du förstår – min son har varit sjuk under en längre tid. Han lider av en förfärlig hosta som inte ger sig. Just den kvällen var hans feber högre än vanligt och jag behövde sitta vid hans sängkant och ha koll på hans temperatur vart tionde minut." },
     { "name": "Ingrid", "line": "Så ingen kan säga om jag talar sanning eller inte, men JAG vet sanningen. Jag hade inget med det att göra! Jag tycker du ska ta ett snack med Gustaf Larsson, han har de senaste veckorna hållit hus vid vattentornet. Han arbetar med rören, så han har haft tillgång till vattnet också, hör med honom vad han sysslade med den kvällen vettja! Nu måste jag fortsätta tvätta, annars hänger de mig för att deras nattlinnen inte är tvättade i tid!" },
-
 ]
 
 let currentIndex = 0;
