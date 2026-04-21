@@ -3,6 +3,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* HEADER */
 #header {
   position: fixed;
   top: 0;
@@ -23,7 +24,7 @@ body {
 
 /* MAP */
 #map {
-  height: 100vh;
+  height: 100dvh; 
   width: 100vw;
 }
 
@@ -61,14 +62,13 @@ body {
   left: 0;
 
   width: 100vw;
-  height: 34vh; 
+  height: 34dvh; /* 🔥 FIX för mobil */
 
   display: flex;
-  padding: 12px 20px 24px 20px; 
+  padding: 12px 20px calc(24px + env(safe-area-inset-bottom)) 20px; /* 🔥 safe area */
   box-sizing: border-box;
 
   border-top: 3px solid gold;
-
   background: #1e1e1e;
 
   z-index: 1500;
@@ -78,8 +78,7 @@ body {
 }
 
 #dialogBox p {
-    margin-top: 2px;
-    padding-top: none;
+  margin-top: 2px;
 }
 
 /* KARAKTÄR */
@@ -102,9 +101,9 @@ body {
   filter: drop-shadow(0 8px 15px rgba(0,0,0,0.7));
 }
 
-/* Text box */
+/* TEXT BOX */
 #textBox {
-  margin-left: 190px; 
+  margin-left: 190px;
   padding-right: 16px;
 
   display: flex;
@@ -114,41 +113,44 @@ body {
   width: calc(100% - 190px);
 }
 
-/* namn */
+/* NAMN */
 #name {
   color: gold;
   font-size: 34px;
-  margin-bottom: 2px; 
+  margin-bottom: 2px;
 }
 
-/* Dialog text */
+/* TEXT */
 #dialog {
   color: #ddd;
-  font-size: 18px; 
-  line-height: 1.75; 
+  font-size: 18px;
+  line-height: 1.75;
 
   margin-bottom: 4px;
 }
 
+/* BUTTONS */
 #buttons {
   display: flex;
   gap: 15px;
   margin-top: 8px;
 }
 
+/* BUTTON */
 button {
   flex: 1;
 
-  padding: 20px; 
+  padding: 20px;
   font-size: 18px;
 
   border: none;
   border-radius: 14px;
 
-  min-height: 60px; 
+  min-height: 60px;
   cursor: pointer;
 }
 
+/* COLORS */
 .ignore {
   background: #b30000;
   color: white;
@@ -157,4 +159,27 @@ button {
 .talk {
   background: #0a8f1f;
   color: white;
+}
+
+/* PHONE */
+@media (max-width: 600px) {
+  #textBox {
+    margin-left: 150px;
+    width: calc(100% - 150px);
+  }
+
+  #name {
+    font-size: 28px;
+  }
+
+  #dialog {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  button {
+    padding: 18px;
+    font-size: 16px;
+    min-height: 56px;
+  }
 }
