@@ -24,7 +24,7 @@ body {
 
 /* MAP */
 #map {
-  height: 100dvh; /* 🔥 mobil-fix */
+  height: 100dvh; 
   width: 100vw;
 }
 
@@ -84,7 +84,7 @@ body {
 /* KARAKTÄR */
 #paperdollImage {
   position: absolute;
-  bottom: 0; /* 🔥 exakt på botten */
+  bottom: 0; 
   left: -10px;
 
   height: 120%;
@@ -96,7 +96,7 @@ body {
   height: 100%;
   width: auto;
 
-  transform: translateY(-15px); /* 🔥 lagom uppstick */
+  transform: translateY(-15px); 
 
   filter: drop-shadow(0 8px 15px rgba(0,0,0,0.7));
 }
