@@ -1,11 +1,11 @@
 // https://leafletjs.com/reference.html
 
-alert("Updated 13:35 04-21")
+alert("Updated NPC system");
 
 // 🗺️ Starta karta (Malmö)
 const map = L.map("map").setView([55.5833, 13.0333], 15);
 
-// 🌍 Mörk karta (snyggare för spel)
+// 🌍 Karta
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
@@ -26,71 +26,167 @@ let accuracyCircle = L.circle([55.5833, 13.0333], {
   fillOpacity: 0.1
 }).addTo(map);
 
-// 🧍 NPC (Doris)
-const npc = {
-  name: "Doris",
-  coords: [55.608856865560334, 12.994557023048403],
-  radius: 50,
-  visited: false
-};
+// 🧍 NPCs
+const npcs = [
+  {
+    id: "doris",
+    name: "Doris",
+    coords: [55.608856865560334, 12.994557023048403],
+    radius: 50,
+    visited: false,
 
-// 🖼️ Rund NPC ikon
-const dorisIcon = L.divIcon({
-  className: "",
-  html: `
-    <div class="npc-wrapper">
-      <img src="doris.png" />
-    </div>
-  `,
-  iconSize: [70, 70],
-  iconAnchor: [35, 35]
+    icon: "Images/Paperdoll/Doris.png",          
+    paperdoll: "Images/Paperdoll/PaperdollDoris.png", 
+
+    text: `Doris ser nervös ut, som att hon bär på en hemlighet.<br><br>“Jag såg något vid vattnet den morgonen... något som inte borde varit där.”`
+  },
+
+  {
+    id: "ingrid",
+    name: "Ingrid",
+    coords: [55.6095, 12.9955],
+    radius: 50,
+    visited: false,
+
+    icon: "Images/Paperdoll/Ingrid.png",
+    paperdoll: "Images/Paperdoll/Ingrid.png",
+
+    text: `...`
+  },
+
+  {
+    id: "gustaf",
+    name: "Gustaf",
+    coords: [55.6075, 12.9935],
+    radius: 50,
+    visited: false,
+
+    icon: "Images/Paperdoll/Gustaf.png",
+    paperdoll: "Images/Paperdoll/Gustaf.png",
+
+    text: `...`
+  },
+
+  {
+    id: "august",
+    name: "August",
+    coords: [55.6065, 12.9925],
+    radius: 50,
+    visited: false,
+
+    icon: "Images/Paperdoll/August.png",
+    paperdoll: "Images/Paperdoll/August.png",
+
+    text: `...`
+  }
+];
+
+// 
+npcs.forEach(npc => {
+  const icon = L.divIcon({
+    className: "",
+    html: `
+      <div class="npc-wrapper">
+        <img src="${npc.icon}" />
+      </div>
+    `,
+    iconSize: [70, 70],
+    iconAnchor: [35, 35]
+  });
+
+  L.marker(npc.coords, { icon })
+    .addTo(map)
+    .bindPopup(npc.name);
 });
 
-// Lägg ut Doris på kartan
-L.marker(npc.coords, { icon: dorisIcon })
-  .addTo(map)
-  .bindPopup("Doris är här");
 
-// 📏 Kolla avstånd
-function checkDistance(playerPos) {
-  const dist = map.distance(playerPos, npc.coords);
 
-  if (dist < npc.radius && !npc.visited) {
-    npc.visited = true;
-    alert("Du möter Doris!");
-    // Här kommer funktioner triggas för att prata med Doris specefikt. Vi kommer skapa
-    // UI osv i andra funktioner. 
-  }
+
+
+let typingInterval;
+let isTyping = false;
+let currentText = "";
+
+// Skriv ut text
+function typeWriter(text, element, speed = 25) {
+  clearInterval(typingInterval);
+
+  element.innerHTML = "";
+  currentText = text;
+  isTyping = true;
+
+  let i = 0;
+
+  typingInterval = setInterval(() => {
+    element.innerHTML = text.slice(0, i);
+    i++;
+
+    if (i > text.length) {
+      clearInterval(typingInterval);
+      isTyping = false;
+      buttons.style.visibility = "visible";
+    }
+  }, speed);
 }
 
-// 📡 GPS tracking
+// Dialog
+const dialogBox = document.getElementById("dialogBox");
+const nameEl = document.getElementById("name");
+const dialogEl = document.getElementById("dialog");
+const buttons = document.getElementById("buttons");
+const paperdoll = document.querySelector("#paperdollImage img");
+
+function showNPCDialog(npc) {
+  dialogBox.style.display = "flex";
+  nameEl.textContent = npc.name;
+  paperdoll.src = npc.paperdoll;
+
+  buttons.style.visibility = "hidden";
+
+  typeWriter(npc.text, dialogEl);
+}
+
+// Distance check
+function checkDistance(playerPos) {
+  npcs.forEach(npc => {
+    const dist = map.distance(playerPos, npc.coords);
+
+    if (dist < npc.radius && !npc.visited) {
+      npc.visited = true;
+      showNPCDialog(npc);
+    }
+  });
+}
+
+// ´hps
 navigator.geolocation.watchPosition(
-  (pos) => {
-    const lat = pos.coords.latitude;
-    const lng = pos.coords.longitude;
-    const accuracy = pos.coords.accuracy;
+  pos => {
+    const playerPos = [pos.coords.latitude, pos.coords.longitude];
 
-    const playerPos = [lat, lng];
-
-    // 🔄 Uppdatera spelare
     playerCircle.setLatLng(playerPos);
     accuracyCircle.setLatLng(playerPos);
-    accuracyCircle.setRadius(accuracy);
+    accuracyCircle.setRadius(pos.coords.accuracy);
 
-    // 🗺️ Följ spelaren
     map.panTo(playerPos);
-
     checkDistance(playerPos);
   },
-  (error) => {
-    alert("GPS fungerar inte – testa på mobil!");
-  },
-  {
-    enableHighAccuracy: true
-  }
+  () => alert("GPS fungerar inte – testa på mobil!"),
+  { enableHighAccuracy: true }
 );
 
-// 🧪 Klicka på kartan för koordinater (debug)
-map.on("click", function (e) {
-  console.log(e.latlng);
+//  tryck för att skippa.
+dialogBox.addEventListener("click", () => {
+  if (!isTyping) return;
+
+  clearInterval(typingInterval);
+  dialogEl.innerHTML = currentText;
+  isTyping = false;
+
+  buttons.style.visibility = "visible";
 });
+
+// Test Skriv testNPC("doris")
+function testNPC(id) {
+  const npc = npcs.find(n => n.id === id);
+  if (npc) showNPCDialog(npc);
+}

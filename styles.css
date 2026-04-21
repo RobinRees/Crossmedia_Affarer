@@ -3,18 +3,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* HEADER */
+/* Header */
 #header {
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100vw;
   height: 8vh;
-
   background-color: black;
   text-align: center;
-
   z-index: 1000;
 }
 
@@ -22,13 +19,17 @@ body {
   height: 100%;
 }
 
-/* MAP */
+/* Map */
 #map {
-  height: 100dvh; 
+  height: 100dvh;
   width: 100vw;
 }
 
-/* NPC ICON */
+.leaflet-container {
+  filter: brightness(1.05) contrast(1.05);
+}
+
+/* NPC */
 .npc-wrapper {
   width: 70px;
   height: 70px;
@@ -50,43 +51,30 @@ body {
   100% { box-shadow: 0 0 10px gold; }
 }
 
-/* MAP FILTER */
-.leaflet-container {
-  filter: brightness(1.05) contrast(1.05);
-}
-
-/* DIALOG BOX */
+/* Dialog */
 #dialogBox {
   position: fixed;
   bottom: 0;
   left: 0;
-
   width: 100vw;
-
-  min-height: 28dvh;
-  max-height: 45dvh;
-
+  height: 42dvh;
   display: flex;
   padding: 10px 16px calc(20px + env(safe-area-inset-bottom));
   box-sizing: border-box;
-
   border-top: 3px solid gold;
   background: #1e1e1e;
-
   z-index: 1500;
 }
 
-/* fix spacing */
 #dialogBox p {
-  margin-top: 2px;
+  margin: 0;
 }
 
-/* KARAKTÄR */
+/* Character */
 #paperdollImage {
   position: absolute;
-  bottom: 0; 
+  bottom: 0;
   left: -10px;
-
   height: 120%;
   display: flex;
   align-items: flex-end;
@@ -94,61 +82,49 @@ body {
 
 #paperdollImage img {
   height: 100%;
-  width: auto;
-
-  transform: translateY(-15px); 
-
-  filter: drop-shadow(0 8px 15px rgba(0,0,0,0.7));
+  transform: translateY(-15px);
+  filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.7));
 }
 
-/* TEXT BOX */
+/* Text layout */
 #textBox {
   margin-left: 130px;
   padding-right: 10px;
-
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
+  gap: 8px;
   width: calc(100% - 130px);
 }
 
-/* NAMN */
 #name {
   color: gold;
   font-size: 30px;
-  margin-bottom: 4px;
+  margin: 0;
 }
 
-/* TEXT */
 #dialog {
   color: #ddd;
   font-size: 15px;
   line-height: 1.6;
-
-  margin-bottom: 8px;
+  flex: 1;
+  overflow: hidden;
 }
 
-/* BUTTONS */
+/* Buttons */
 #buttons {
   display: flex;
   gap: 10px;
 }
 
-/* BUTTON */
 button {
   flex: 1;
-
   padding: 16px;
   font-size: 15px;
-
   border: none;
   border-radius: 12px;
-
   min-height: 50px;
 }
 
-/* COLORS */
 .ignore {
   background: #b30000;
   color: white;
@@ -159,7 +135,7 @@ button {
   color: white;
 }
 
-/* 📱 MOBIL */
+/* Mobile */
 @media (max-width: 600px) {
   #textBox {
     margin-left: 120px;
