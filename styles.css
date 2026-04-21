@@ -63,7 +63,6 @@ body {
 
   width: 100vw;
 
-  /* 🔥 flexibel istället för låst */
   min-height: 28dvh;
   max-height: 45dvh;
 
@@ -85,10 +84,10 @@ body {
 /* KARAKTÄR */
 #paperdollImage {
   position: absolute;
-  bottom: -5px;
+  bottom: 0; /* 🔥 exakt på botten */
   left: -10px;
 
-  height: 120%; /* 🔥 sticker upp */
+  height: 120%;
   display: flex;
   align-items: flex-end;
 }
@@ -97,14 +96,14 @@ body {
   height: 100%;
   width: auto;
 
-  transform: translateY(-20px); /* 🔥 lyfter huvudet */
+  transform: translateY(-15px); /* 🔥 lagom uppstick */
 
   filter: drop-shadow(0 8px 15px rgba(0,0,0,0.7));
 }
 
 /* TEXT BOX */
 #textBox {
-  margin-left: 130px; /* 🔥 mindre gap */
+  margin-left: 130px;
   padding-right: 10px;
 
   display: flex;
@@ -160,7 +159,7 @@ button {
   color: white;
 }
 
-/* 📱 EXTRA MOBIL OPTIMERING */
+/* 📱 MOBIL */
 @media (max-width: 600px) {
   #textBox {
     margin-left: 120px;
