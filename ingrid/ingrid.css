@@ -1,5 +1,17 @@
+@font-face {
+    font-family: "Baskerville";
+    src: url("../fonts/Baskervville-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Bodoni";
+    src: url("../fonts/BodoniModa-VariableFont_opsz\,wght.ttf") format("truetype");
+}
+
 body {
-    background-color: #e5decf;
+    background-color: #877257;
+    font-family: "Baskerville", serif;
+
 }
 
 main {
@@ -9,8 +21,15 @@ main {
     padding: 20px;
 }
 
+h1,
+h2,
+h3 {
+    font-family: "Bodoni", serif;
+    color: white;
+}
+
 img {
-    width: 200px
+    width: 150px
 }
 
 .dialog-profile {
@@ -19,6 +38,14 @@ img {
 
 .dialog {
     flex: 1;
+    border: 1px solid black;
+    padding: 12px;
+    background-color: #d8c3a5;
+    border-radius: 12px;
+}
+
+#dialog-name {
+    font-weight: 800;
 }
 
 #buttons {
