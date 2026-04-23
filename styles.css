@@ -5,11 +5,6 @@
 }
 
 
-.bodoni-moda {
-  font-family: "Bodoni Moda", serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-}
 
 body {
   margin: 0;
@@ -23,7 +18,7 @@ body {
   left: 0;
   width: 100vw;
   height: 8vh;
-  background-color: black;
+  background-color: #3a2916;
   text-align: center;
   z-index: 1000;
 }
