@@ -35,8 +35,8 @@ const npcs = [
     radius: 50,
     visited: false,
 
-    icon: "Images/Paperdoll/Doris.png",          
-    paperdoll: "Images/Paperdoll/PaperdollDoris.png", 
+    icon: "Images/Paperdoll/Doris.png",
+    paperdoll: "Images/Paperdoll/PaperdollDoris.png",
 
     text: `Doris ser nervös ut, som att hon bär på en hemlighet.<br><br>“Jag såg något vid vattnet den morgonen... något som inte borde varit där.”`
   },
@@ -190,3 +190,8 @@ function testNPC(id) {
   const npc = npcs.find(n => n.id === id);
   if (npc) showNPCDialog(npc);
 }
+
+const talkButtonDoris = document.getElementById("talk_doris")
+talkButtonDoris.addEventListener("click", () => {
+  window.location.href = "/ingrid/ingrid.html";
+})
