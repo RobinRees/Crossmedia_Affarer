@@ -36,7 +36,7 @@ const npcs = [
     visited: false,
 
     icon: "Images/Paperdoll/Doris.png",          
-    paperdoll: "Images/Paperdoll/ingridNew.png", 
+    paperdoll: "Images/Paperdoll/dorisNew.png", 
 
     text: `Doris ser nervös ut, som att hon bär på en hemlighet.<br><br>“Jag såg något vid vattnet den morgonen... något som inte borde varit där.”`
   },
