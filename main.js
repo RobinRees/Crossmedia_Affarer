@@ -193,5 +193,5 @@ function testNPC(id) {
 
 const talkButtonDoris = document.getElementById("talk_doris")
 talkButtonDoris.addEventListener("click", () => {
-  window.location.href = "/ingrid/ingrid.html";
+  window.location.href = "ingrid/ingrid.html";
 })
