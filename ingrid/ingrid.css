@@ -9,15 +9,17 @@
 }
 
 body {
-    background-color: #877257;
+    background-image: url(https://texturelabs.org/wp-content/uploads/Texturelabs_Paper_125S.jpg);
+    background-size: cover;
+    background-position: center;
     font-family: "Baskerville", serif;
-
+    margin: 0;
 }
 
 main {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100dvh;
     padding: 20px;
 }
 
@@ -37,11 +39,12 @@ img {
 }
 
 .dialog {
-    flex: 1;
-    border: 1px solid black;
+    /* flex: 1; */
+    border: 2px solid #3a2916;
     padding: 12px;
     background-color: #d8c3a5;
     border-radius: 12px;
+    /* height: 100px; */
 }
 
 #dialog-name {
@@ -51,6 +54,14 @@ img {
 #buttons {
     text-align: right;
     margin-top: auto;
+}
+
+#buttons button {
+    padding: 12px;
+    background-color: #3a2916;
+    color: white;
+    border-radius: 12px;
+    border: 0px;
 }
 
 #exit-button {

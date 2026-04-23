@@ -187,3 +187,8 @@ function testNPC(id) {
   const npc = npcs.find(n => n.id === id);
   if (npc) showNPCDialog(npc);
 }
+
+const talkButtonDoris = document.getElementById("talk_doris")
+talkButtonDoris.addEventListener("click", () => {
+  window.location.href = "ingrid/ingrid.html";
+})
