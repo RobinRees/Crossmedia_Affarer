@@ -70,7 +70,7 @@ body {
   padding: 10px 16px calc(20px + env(safe-area-inset-bottom));
   box-sizing: border-box;
   border-top: 3px solid gold;
-  background-image: url(Images/textures/paperBackground4.jpg);
+  background-image: url(./Images/textures/paperBackground4.jpg);
   background-size: contain;
   z-index: 1500;
 }
