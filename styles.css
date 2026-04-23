@@ -1,6 +1,19 @@
+.baskervville {
+  font-family: "Baskervville", serif;
+  font-optical-sizing: auto;  
+  font-style: normal;
+}
+
+
+.bodoni-moda {
+  font-family: "Bodoni Moda", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:brial, Helvetica, sans-serif;
 }
 
 /* Header */
@@ -64,6 +77,7 @@ body {
   border-top: 3px solid gold;
   background: #1e1e1e;
   z-index: 1500;
+  display: none;
 }
 
 #dialogBox p {
