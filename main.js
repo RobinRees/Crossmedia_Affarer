@@ -80,7 +80,7 @@ const npcs = [
     text: `August lutar sig lätt tillbaka, som om han redan vet mer än han säger.<br><br>“Alla spelar ett spel här… vissa är bara bättre på att dölja reglerna.”`
   }
 ];
-
+//
 // 
 npcs.forEach(npc => {
   const icon = L.divIcon({
