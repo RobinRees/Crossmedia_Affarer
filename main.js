@@ -86,9 +86,9 @@ npcs.forEach(npc => {
   const icon = L.divIcon({
     className: "",
     html: `
-      <div class="npc-wrapper">
-        <img src="${npc.icon}" />
-      </div>
+    <div class="npc-wrapper ${npc.id}" style="--npc-color: ${npc.color}">
+    <img src="${npc.icon}" />
+    </div>
     `,
     iconSize: [70, 70],
     iconAnchor: [35, 35]

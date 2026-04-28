@@ -18,13 +18,17 @@ body {
   left: 0;
   width: 100vw;
   height: 8vh;
-  background-color: #3a2916;
   text-align: center;
   z-index: 1000;
+  background-image: url(./Images/textures/paperBackground4.jpg);
+  background-size: contain;
+  border-bottom: 2px solid gold;
 }
 
+
+/* Storlek måste nog ändras*/
 #logotyp {
-  height: 100%;
+  height: 100px;
 }
 
 /* Map */
@@ -51,6 +55,24 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
+  transform: scale(1.8); /*  /* flyttar fokus upp mot ansiktet */
+}
+
+.npc-wrapper.ingrid img {
+  transform: scale(1.9) translateX(5px) translateY(5px);
+}
+
+.npc-wrapper.doris img {
+  transform: scale(1.8) translateX(5px) translateY(10px);
+}
+
+.npc-wrapper.gustaf img {
+  transform: scale(2.0) translateX(5px) translateY(10px);
+}
+
+.npc-wrapper.august img {
+  transform: scale(2.5) translateX(5px) translateY(15px);
 }
 
 @keyframes pulse {
@@ -107,6 +129,7 @@ body {
   transform: translateY(-15px);
   filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.7));
 }
+
 
 /* Text layout */
 #textBox {
