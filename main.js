@@ -35,7 +35,7 @@ const npcs = [
     radius: 50,
     visited: false,
 
-    icon: "Images/Paperdoll/Doris.png",          
+    icon: "Images/Paperdoll/doris.png",          
     paperdoll: "Images/Paperdoll/dorisNew.png", 
 
     text: `Doris ser nervös ut, som att hon bär på en hemlighet.<br><br>“Jag såg något vid vattnet den morgonen... något som inte borde varit där.”`
@@ -48,7 +48,7 @@ const npcs = [
     radius: 50,
     visited: false,
 
-    icon: "Images/Paperdoll/Ingrid.png",
+    icon: "Images/Paperdoll/ingrid.png",
     paperdoll: "Images/Paperdoll/ingridNew.png",
 
     text: `Ingrid möter din blick utan att tveka, men hennes händer är knäppta hårt.<br><br>“Folk pratar för mycket… och lyssnar för lite. Ibland är sanningen farligare än lögnen.”`
@@ -61,7 +61,7 @@ const npcs = [
     radius: 50,
     visited: false,
 
-    icon: "Images/Paperdoll/Gustaf.png",
+    icon: "Images/Paperdoll/gustaf.png",
     paperdoll: "Images/Paperdoll/gustavNew.png",
 
     text: `Gustaf står stilla, med en blick som väger varje ord du säger.<br><br>“Det som hände var ingen olycka. Någon såg till att det blev så… frågan är vem som tjänar på det.”`
