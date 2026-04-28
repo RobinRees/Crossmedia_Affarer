@@ -34,6 +34,7 @@ const npcs = [
     coords: [55.608856865560334, 12.994557023048403],
     radius: 50,
     visited: false,
+    color: "purple",
 
     icon: "Images/Paperdoll/doris.png",          
     paperdoll: "Images/Paperdoll/dorisNew.png", 
@@ -47,6 +48,7 @@ const npcs = [
     coords: [55.6095, 12.9955],
     radius: 50,
     visited: false,
+    color: "red",
 
     icon: "Images/Paperdoll/ingrid.png",
     paperdoll: "Images/Paperdoll/ingridNew.png",
@@ -60,7 +62,7 @@ const npcs = [
     coords: [55.6075, 12.9935],
     radius: 50,
     visited: false,
-
+    color: "gold",
     icon: "Images/Paperdoll/gustaf.png",
     paperdoll: "Images/Paperdoll/gustavNew.png",
 
@@ -73,6 +75,7 @@ const npcs = [
     coords: [55.6065, 12.9925],
     radius: 50,
     visited: false,
+    color: "blue",
 
     icon: "Images/Paperdoll/August.png",
     paperdoll: "Images/Paperdoll/augustNew.png",
