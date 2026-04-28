@@ -49,9 +49,9 @@ const npcs = [
     visited: false,
 
     icon: "Images/Paperdoll/Ingrid.png",
-    paperdoll: "Images/Paperdoll/Ingrid.png",
+    paperdoll: "Images/Paperdoll/ingridNew.png",
 
-    text: `...`
+    text: `Ingrid möter din blick utan att tveka, men hennes händer är knäppta hårt.<br><br>“Folk pratar för mycket… och lyssnar för lite. Ibland är sanningen farligare än lögnen.”`
   },
 
   {
@@ -62,9 +62,9 @@ const npcs = [
     visited: false,
 
     icon: "Images/Paperdoll/Gustaf.png",
-    paperdoll: "Images/Paperdoll/Gustaf.png",
+    paperdoll: "Images/Paperdoll/gustavNew.png",
 
-    text: `...`
+    text: `Gustaf står stilla, med en blick som väger varje ord du säger.<br><br>“Det som hände var ingen olycka. Någon såg till att det blev så… frågan är vem som tjänar på det.”`
   },
 
   {
@@ -75,12 +75,12 @@ const npcs = [
     visited: false,
 
     icon: "Images/Paperdoll/August.png",
-    paperdoll: "Images/Paperdoll/August.png",
+    paperdoll: "Images/Paperdoll/augustNew.png",
 
-    text: `...`
+    text: `August lutar sig lätt tillbaka, som om han redan vet mer än han säger.<br><br>“Alla spelar ett spel här… vissa är bara bättre på att dölja reglerna.”`
   }
 ];
-
+//
 // 
 npcs.forEach(npc => {
   const icon = L.divIcon({
@@ -131,12 +131,15 @@ const dialogBox = document.getElementById("dialogBox");
 const nameEl = document.getElementById("name");
 const dialogEl = document.getElementById("dialog");
 const buttons = document.getElementById("buttons");
+const paperdollContainer = document.querySelector("#paperdollImage")
 const paperdoll = document.querySelector("#paperdollImage img");
+
 
 function showNPCDialog(npc) {
   dialogBox.style.display = "flex";
   nameEl.textContent = npc.name;
   paperdoll.src = npc.paperdoll;
+  paperdollContainer.className = npc.name;
 
   buttons.style.visibility = "hidden";
 
