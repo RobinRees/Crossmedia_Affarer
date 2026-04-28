@@ -1,4 +1,13 @@
+body {
+    background-image: url(https://texturelabs.org/wp-content/uploads/Texturelabs_Paper_125S.jpg);
+    background-size: cover;
+    background-position: center;
+    font-family: "Baskerville", serif;
+    margin: 0;
+}
+
 main {
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;

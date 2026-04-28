@@ -27,11 +27,11 @@ h1,
 h2,
 h3 {
     font-family: "Bodoni", serif;
-    color: white;
+    color: black;
 }
 
 img {
-    width: 150px
+    width: 200px;
 }
 
 .dialog-profile {
@@ -39,12 +39,10 @@ img {
 }
 
 .dialog {
-    /* flex: 1; */
     border: 2px solid #3a2916;
     padding: 12px;
     background-color: #d8c3a5;
     border-radius: 12px;
-    /* height: 100px; */
 }
 
 #dialog-name {
