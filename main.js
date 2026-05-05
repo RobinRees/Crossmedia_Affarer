@@ -1,16 +1,12 @@
 // https://leafletjs.com/reference.html
 
-alert("Updated NPC system");
-
-// 🗺️ Starta karta (Malmö)
 const map = L.map("map").setView([55.5833, 13.0333], 15);
 
-// 🌍 Karta
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// Spelarens prick
+// Spelarens position
 let playerCircle = L.circle([55.5833, 13.0333], {
   radius: 10,
   color: "blue",
@@ -18,7 +14,6 @@ let playerCircle = L.circle([55.5833, 13.0333], {
   fillOpacity: 0.9
 }).addTo(map);
 
-// Accuracy-ring
 let accuracyCircle = L.circle([55.5833, 13.0333], {
   radius: 0,
   color: "blue",
@@ -37,7 +32,7 @@ const npcs = [
     color: "red",
     icon: "Images/Paperdoll/ingrid.png",
     paperdoll: "Images/Paperdoll/ingridNew.png",
-    text: `Ingrid möter din blick utan att tveka, men hennes händer är knäppta hårt.<br><br>“Folk pratar för mycket… och lyssnar för lite. Ibland är sanningen farligare än lögnen.”`
+    text: "Ingrid möter din blick utan att tveka..."
   },
   {
     id: "gustaf",
@@ -48,47 +43,22 @@ const npcs = [
     color: "gold",
     icon: "Images/Paperdoll/gustaf.png",
     paperdoll: "Images/Paperdoll/gustavNew.png",
-    text: `Gustaf står stilla, med en blick som väger varje ord du säger.<br><br>“Det som hände var ingen olycka. Någon såg till att det blev så… frågan är vem som tjänar på det.”`
-  },
-  {
-    id: "august",
-    name: "August",
-    coords: [55.5883, 12.9929],
-    radius: 50,
-    visited: false,
-    color: "blue",
-    icon: "Images/Paperdoll/August.png",
-    paperdoll: "Images/Paperdoll/augustNew.png",
-    text: `August lutar sig lätt tillbaka, som om han redan vet mer än han säger.<br><br>“Alla spelar ett spel här… vissa är bara bättre på att dölja reglerna.”`
-  },
-  {
-    id: "doris",
-    name: "Doris",
-    coords: [55.6057, 13.0013],
-    radius: 50,
-    visited: false,
-    color: "purple",
-    icon: "Images/Paperdoll/doris.png",
-    paperdoll: "Images/Paperdoll/dorisNew.png",
-    text: `Doris ser nervös ut, som att hon bär på en hemlighet.<br><br>“Jag såg något vid vattnet den morgonen... något som inte borde varit där.”`
+    text: "Gustaf står stilla..."
   }
 ];
 
-// =====================
-// NPC STATE
-// =====================
-
+// STATE
 let currentNPCIndex = 0;
 let currentMarker = null;
 
-// Visa aktuell NPC
+// Visa NPC
 function showCurrentNPC() {
   const npc = npcs[currentNPCIndex];
 
   const icon = L.divIcon({
     className: "",
     html: `
-      <div class="npc-wrapper ${npc.id}" style="--npc-color: ${npc.color}">
+      <div class="npc-wrapper ${npc.id}">
         <img src="${npc.icon}" />
       </div>
     `,
@@ -101,60 +71,23 @@ function showCurrentNPC() {
     .bindPopup(npc.name);
 }
 
-// Starta med första NPC
 showCurrentNPC();
 
-// =====================
-//  DIALOG SYSTEM
-// =====================
-
-let typingInterval;
-let isTyping = false;
-let currentText = "";
-
-function typeWriter(text, element, speed = 25) {
-  clearInterval(typingInterval);
-
-  element.innerHTML = "";
-  currentText = text;
-  isTyping = true;
-
-  let i = 0;
-
-  typingInterval = setInterval(() => {
-    element.innerHTML = text.slice(0, i);
-    i++;
-
-    if (i > text.length) {
-      clearInterval(typingInterval);
-      isTyping = false;
-      buttons.style.visibility = "visible";
-    }
-  }, speed);
-}
-
+// Dialog UI
 const dialogBox = document.getElementById("dialogBox");
 const nameEl = document.getElementById("name");
 const dialogEl = document.getElementById("dialog");
-const buttons = document.getElementById("buttons");
-const paperdollContainer = document.querySelector("#paperdollImage");
 const paperdoll = document.querySelector("#paperdollImage img");
 
+// Visa dialog
 function showNPCDialog(npc) {
   dialogBox.style.display = "flex";
   nameEl.textContent = npc.name;
+  dialogEl.textContent = npc.text;
   paperdoll.src = npc.paperdoll;
-  paperdollContainer.className = npc.name;
-
-  buttons.style.visibility = "hidden";
-
-  typeWriter(npc.text, dialogEl);
 }
 
-// =====================
-// DISTANCE CHECK
-// =====================
-
+// Distance check
 function checkDistance(playerPos) {
   const npc = npcs[currentNPCIndex];
   const dist = map.distance(playerPos, npc.coords);
@@ -165,10 +98,7 @@ function checkDistance(playerPos) {
   }
 }
 
-// =====================
 // GPS
-// =====================
-
 navigator.geolocation.watchPosition(
   pos => {
     const playerPos = [pos.coords.latitude, pos.coords.longitude];
@@ -179,33 +109,13 @@ navigator.geolocation.watchPosition(
 
     checkDistance(playerPos);
   },
-  () => alert("GPS fungerar inte – testa på mobil!"),
+  () => alert("GPS fungerar inte"),
   { enableHighAccuracy: true }
 );
 
-// =====================
-// DIALOG INTERACTION
-// =====================
-
-dialogBox.addEventListener("click", () => {
-  if (!isTyping) return;
-
-  clearInterval(typingInterval);
-  dialogEl.innerHTML = currentText;
-  isTyping = false;
-
-  buttons.style.visibility = "visible";
-});
-
-// =====================
-//  NEXT NPC
-// =====================
-
+// Nästa NPC
 function nextNPC() {
-  // Ta bort nuvarande NPC
-  if (currentMarker) {
-    map.removeLayer(currentMarker);
-  }
+  if (currentMarker) map.removeLayer(currentMarker);
 
   dialogBox.style.display = "none";
 
@@ -213,86 +123,10 @@ function nextNPC() {
 
   if (currentNPCIndex < npcs.length) {
     showCurrentNPC();
-  } else {
-    console.log("Alla NPC klara!");
   }
 }
 
-// =====================
-// TEST NPC
-// =====================
-
-function testNPC(id) {
-  const npc = npcs.find(n => n.id === id);
-
-  if (!npc) {
-    console.warn("NPC not found:", id);
-    return;
-  }
-
-  showNPCDialog(npc);
-}
-
-// =====================
-// PRATA-KNAPP
-// =====================
-
-const talkButton = document.getElementById("talk_doris");
-
-if (talkButton) {
-  talkButton.addEventListener("click", () => {
-    nextNPC();
-  });
-}
-
-/* Conversation */
-
-const overlay = document.getElementById("conversationOverlay");
-const dialogNameDOM = document.getElementById("dialog-name");
-const dialogTextDOM = document.getElementById("dialog-text");
-const continueButtonDOM = document.getElementById("continue-button");
-const exitButtonDOM = document.getElementById("exit-button");
-
-let currentIndex = 0;
-let activeConversation = [];
-
-// Starta konversation
-function startConversation(npc) {
-  overlay.classList.remove("hidden");
-
-  activeConversation = npc.dialog;
-  currentIndex = 0;
-
-  updateDialog();
-}
-
-// Uppdatera text
-function updateDialog() {
-  const currentDialog = activeConversation[currentIndex];
-
-  dialogNameDOM.textContent = currentDialog.name;
-  dialogTextDOM.textContent = currentDialog.line;
-
-  // visa exit-knapp på slutet
-  if (currentIndex >= activeConversation.length - 1) {
-    continueButtonDOM.style.display = "none";
-    exitButtonDOM.style.display = "inline";
-  } else {
-    continueButtonDOM.style.display = "inline";
-    exitButtonDOM.style.display = "none";
-  }
-}
-
-// Nästa rad
-continueButtonDOM.addEventListener("click", () => {
-  currentIndex++;
-  updateDialog();
-});
-
-// Avsluta
-exitButtonDOM.addEventListener("click", () => {
-  overlay.classList.add("hidden");
-
-  // 🔥 progression
+// Prata-knapp
+document.querySelector(".talk").addEventListener("click", () => {
   nextNPC();
 });
