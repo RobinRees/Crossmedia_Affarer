@@ -41,22 +41,30 @@
 
     </div>
 
+    <div id="conversationOverlay" class="hidden">
+    <div class="conversation-content">
+    
+    <div class="dialog-profile">
+      <img id="conv-img" src="Images/Paperdoll/ingrid.png">
+      <h1 id="conv-title">Ingrid</h1>
+    </div>
+
+    <div class="dialog">
+      <p id="dialog-name">Leopold</p>
+      <p id="dialog-text"></p>
+    </div>
+
+    <div class="conv-buttons">
+      <button id="continue-button">Fortsätt</button>
+      <button id="exit-button">Gå vidare</button>
+    </div>
 
   </div>
-      <main>
-        <section class="dialog-profile">
-            <img src="../images/profiles/ingrid_profilbild.png" alt="Porträtt av Doris">
-            <h1>Ingrid Holm</h1>
-        </section>
-        <section class="dialog">
-            <p id="dialog-name">Leopold</p>
-            <p id="dialog-text">Ursäkta mig frun?</p>
-        </section>
-        <section id="buttons">
-            <button id="continue-button">Fortsätt</button>
-            <button id="exit-button">Gå vidare</button>
-        </section>
-    </main> 
+</div>
+
+
+  </div>
+
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

@@ -244,3 +244,55 @@ if (talkButton) {
     nextNPC();
   });
 }
+
+/* Conversation */
+
+const overlay = document.getElementById("conversationOverlay");
+const dialogNameDOM = document.getElementById("dialog-name");
+const dialogTextDOM = document.getElementById("dialog-text");
+const continueButtonDOM = document.getElementById("continue-button");
+const exitButtonDOM = document.getElementById("exit-button");
+
+let currentIndex = 0;
+let activeConversation = [];
+
+// Starta konversation
+function startConversation(npc) {
+  overlay.classList.remove("hidden");
+
+  activeConversation = npc.dialog;
+  currentIndex = 0;
+
+  updateDialog();
+}
+
+// Uppdatera text
+function updateDialog() {
+  const currentDialog = activeConversation[currentIndex];
+
+  dialogNameDOM.textContent = currentDialog.name;
+  dialogTextDOM.textContent = currentDialog.line;
+
+  // visa exit-knapp på slutet
+  if (currentIndex >= activeConversation.length - 1) {
+    continueButtonDOM.style.display = "none";
+    exitButtonDOM.style.display = "inline";
+  } else {
+    continueButtonDOM.style.display = "inline";
+    exitButtonDOM.style.display = "none";
+  }
+}
+
+// Nästa rad
+continueButtonDOM.addEventListener("click", () => {
+  currentIndex++;
+  updateDialog();
+});
+
+// Avsluta
+exitButtonDOM.addEventListener("click", () => {
+  overlay.classList.add("hidden");
+
+  // 🔥 progression
+  nextNPC();
+});
