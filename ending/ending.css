@@ -22,3 +22,41 @@ main {
 img {
     max-width: 100%;
 }
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#suspects-section input[type="checkbox"] {
+    display: none;
+}
+
+#suspects-section div label {
+    position: relative;
+    /* Krävs för att overlayen ska hamna rätt */
+    display: block;
+    cursor: pointer;
+}
+
+/* Skapa overlay-lagret */
+label:has(input:checked)::after {
+    content: "SKYLDIG";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    color: #ff0000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 3px solid #ff0000;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    /* Gör att man fortfarande kan klicka "igenom" texten */
+}
+
+label:has(input:checked) img {
+    filter: grayscale(1) brightness(0.5);
+}
