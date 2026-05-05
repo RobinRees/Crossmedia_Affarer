@@ -1,6 +1,7 @@
 body {
     background-image: url(https://texturelabs.org/wp-content/uploads/Texturelabs_Paper_125S.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
     font-family: "Baskerville", serif;
     margin: 0;
@@ -59,4 +60,32 @@ label:has(input:checked)::after {
 
 label:has(input:checked) img {
     filter: grayscale(1) brightness(0.5);
+}
+
+#answer-section {
+    display: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 400px;
+    margin: 0 auto;
+    height: 100dvh;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.story-explanation {
+    text-align: left;
 }
