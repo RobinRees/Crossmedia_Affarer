@@ -210,3 +210,7 @@ button {
     min-height: 48px;
   }
 }
+
+main {
+  display: none;
+}
