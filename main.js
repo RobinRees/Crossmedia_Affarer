@@ -26,7 +26,10 @@ let accuracyCircle = L.circle([55.5833, 13.0333], {
   fillOpacity: 0.1
 }).addTo(map);
 
+// =====================
 // NPCs
+// =====================
+
 const npcs = [
   {
     id: "ingrid",
@@ -37,7 +40,8 @@ const npcs = [
     color: "red",
     icon: "Images/Paperdoll/ingrid.png",
     paperdoll: "Images/Paperdoll/ingridNew.png",
-    text: `Ingrid möter din blick utan att tveka, men hennes händer är knäppta hårt.<br><br>“Folk pratar för mycket… och lyssnar för lite. Ibland är sanningen farligare än lögnen.”`
+    text: `Ingrid möter din blick utan att tveka, men hennes händer är knäppta hårt.<br><br>“Folk pratar för mycket… och lyssnar för lite. Ibland är sanningen farligare än lögnen.”`,
+    dialog: dialogIngrid
   },
   {
     id: "gustaf",
@@ -48,7 +52,8 @@ const npcs = [
     color: "gold",
     icon: "Images/Paperdoll/gustaf.png",
     paperdoll: "Images/Paperdoll/gustavNew.png",
-    text: `Gustaf står stilla, med en blick som väger varje ord du säger.<br><br>“Det som hände var ingen olycka. Någon såg till att det blev så… frågan är vem som tjänar på det.”`
+    text: `Gustaf står stilla, med en blick som väger varje ord du säger.<br><br>“Det som hände var ingen olycka. Någon såg till att det blev så… frågan är vem som tjänar på det.”`,
+    dialog: dialogGustaf
   },
   {
     id: "august",
@@ -59,7 +64,8 @@ const npcs = [
     color: "blue",
     icon: "Images/Paperdoll/August.png",
     paperdoll: "Images/Paperdoll/augustNew.png",
-    text: `August lutar sig lätt tillbaka, som om han redan vet mer än han säger.<br><br>“Alla spelar ett spel här… vissa är bara bättre på att dölja reglerna.”`
+    text: `August lutar sig lätt tillbaka, som om han redan vet mer än han säger.<br><br>“Alla spelar ett spel här… vissa är bara bättre på att dölja reglerna.”`,
+    dialog: dialogAugust
   },
   {
     id: "doris",
@@ -70,7 +76,8 @@ const npcs = [
     color: "purple",
     icon: "Images/Paperdoll/doris.png",
     paperdoll: "Images/Paperdoll/dorisNew.png",
-    text: `Doris ser nervös ut, som att hon bär på en hemlighet.<br><br>“Jag såg något vid vattnet den morgonen... något som inte borde varit där.”`
+    text: `Doris ser nervös ut, som att hon bär på en hemlighet.<br><br>“Jag såg något vid vattnet den morgonen... något som inte borde varit där.”`,
+    dialog: dialogDoris
   }
 ];
 
@@ -80,15 +87,19 @@ const npcs = [
 
 let currentNPCIndex = 0;
 let currentMarker = null;
+let activeNPC = null;
 
-// Visa aktuell NPC
+// =====================
+// Visa NPC
+// =====================
+
 function showCurrentNPC() {
   const npc = npcs[currentNPCIndex];
 
   const icon = L.divIcon({
     className: "",
     html: `
-      <div class="npc-wrapper ${npc.id}" style="--npc-color: ${npc.color}">
+      <div class="npc-wrapper ${npc.id}">
         <img src="${npc.icon}" />
       </div>
     `,
@@ -101,11 +112,10 @@ function showCurrentNPC() {
     .bindPopup(npc.name);
 }
 
-// Starta med första NPC
 showCurrentNPC();
 
 // =====================
-//  DIALOG SYSTEM
+// INTRO DIALOG (lilla rutan)
 // =====================
 
 let typingInterval;
@@ -137,22 +147,21 @@ const dialogBox = document.getElementById("dialogBox");
 const nameEl = document.getElementById("name");
 const dialogEl = document.getElementById("dialog");
 const buttons = document.getElementById("buttons");
-const paperdollContainer = document.querySelector("#paperdollImage");
 const paperdoll = document.querySelector("#paperdollImage img");
 
 function showNPCDialog(npc) {
+  activeNPC = npc;
+
   dialogBox.style.display = "flex";
   nameEl.textContent = npc.name;
   paperdoll.src = npc.paperdoll;
-  paperdollContainer.className = npc.name;
 
   buttons.style.visibility = "hidden";
-
   typeWriter(npc.text, dialogEl);
 }
 
 // =====================
-// DISTANCE CHECK
+// DISTANCE
 // =====================
 
 function checkDistance(playerPos) {
@@ -184,7 +193,7 @@ navigator.geolocation.watchPosition(
 );
 
 // =====================
-// DIALOG INTERACTION
+// SKIP TYPING
 // =====================
 
 dialogBox.addEventListener("click", () => {
@@ -198,14 +207,11 @@ dialogBox.addEventListener("click", () => {
 });
 
 // =====================
-//  NEXT NPC
+// NEXT NPC
 // =====================
 
 function nextNPC() {
-  // Ta bort nuvarande NPC
-  if (currentMarker) {
-    map.removeLayer(currentMarker);
-  }
+  if (currentMarker) map.removeLayer(currentMarker);
 
   dialogBox.style.display = "none";
 
@@ -213,14 +219,96 @@ function nextNPC() {
 
   if (currentNPCIndex < npcs.length) {
     showCurrentNPC();
-  } else {
-    console.log("Alla NPC klara!");
   }
 }
 
 // =====================
-// TEST NPC
+// PRATA-KNAPP (FIXAD)
 // =====================
+
+const talkButton = document.querySelector(".talk");
+
+talkButton.addEventListener("click", () => {
+  if (!activeNPC) return;
+
+  const npc = activeNPC;
+
+  dialogBox.style.display = "none";
+  document.getElementById("conversation").style.display = "flex";
+
+  // ✅ rätt bild + namn
+  conversationImage.src = npc.icon;
+  conversationName.textContent = npc.name;
+
+  startConversation(npc.dialog);
+});
+
+// =====================
+// CONVERSATION SYSTEM
+// =====================
+
+let currentIndex = 0;
+let activeDialog = [];
+
+const dialogNameEl = document.getElementById("dialogName");
+const dialogTextEl = document.getElementById("dialogText");
+const continueBtn = document.getElementById("conversationContinue");
+const kartaBtn = document.getElementById("conversationKarta");
+const conversationImage = document.getElementById("conversationImage");
+const conversationName = document.getElementById("conversationName");
+
+function startConversation(dialog) {
+  activeDialog = dialog;
+  currentIndex = 0;
+
+  continueBtn.style.display = "block";
+  if (kartaBtn) kartaBtn.style.display = "none";
+
+  // 🔥 koppla NPC → UI
+  if (activeNPC) {
+    conversationImage.src = activeNPC.icon; // eller icon
+    conversationName.textContent = activeNPC.name;
+  }
+
+  updateDialog();
+}
+
+function updateDialog() {
+  const current = activeDialog[currentIndex];
+  if (!current) return;
+
+  dialogNameEl.textContent = current.type === "info" ? "" : current.name;
+  dialogTextEl.textContent = current.line;
+}
+
+// fortsätt
+continueBtn.addEventListener("click", () => {
+  currentIndex++;
+
+  if (currentIndex >= activeDialog.length) {
+    continueBtn.style.display = "none";
+
+    if (kartaBtn) {
+      kartaBtn.style.display = "block";
+    } else {
+      document.getElementById("conversation").style.display = "none";
+      nextNPC();
+    }
+
+    return;
+  }
+
+  updateDialog();
+});
+
+// tillbaka till karta
+if (kartaBtn) {
+  kartaBtn.addEventListener("click", () => {
+    document.getElementById("conversation").style.display = "none";
+    kartaBtn.style.display = "none";
+    nextNPC();
+  });
+}
 
 function testNPC(id) {
   const npc = npcs.find(n => n.id === id);
@@ -230,19 +318,9 @@ function testNPC(id) {
     return;
   }
 
+  // sätt som aktiv NPC
+  activeNPC = npc;
+
+  // visa lilla dialogrutan (som om du gick nära)
   showNPCDialog(npc);
 }
-
-// =====================
-// PRATA-KNAPP
-// =====================
-
-const talkButton = document.getElementById("talk_doris");
-
-if (talkButton) {
-  talkButton.addEventListener("click", () => {
-    nextNPC();
-  });
-}
-
-//SKA NU MERGA FÖRSÖKA BYGGA OM

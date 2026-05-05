@@ -19,9 +19,24 @@
 </head>
 
 <body>
+  <div id="conversation">
+    <div id="conversationImageBox">
+      <img id="conversationImage" src="../images/profiles/ingrid_profilbild.png" alt="Porträtt av Doris">
+      <h1 id="conversationName">Name</h1>
+    </div>
+    <div id="conversationBox">
+          <p id="dialogName">Leopold</p>
+          <p id="dialogText">Ursäkta mig frun?</p>
+    </div>
+    <div id="conversationContinue"><p>Fortsätt</p></div>
+    <div id="conversationKarta"><p>Karta</p></div>
+  </div>
+  
   <div id="header" class="backgroundUi">
     <img id="logotyp" src="Images/GrumligaAffarerLogotyp.png" alt="">
   </div>
+
+
 
   <div id="map"></div>
 
@@ -40,23 +55,12 @@
       </div>
 
     </div>
+  </div>
+</div>
 
 
   </div>
-      <main>
-        <section class="dialog-profile">
-            <img src="../images/profiles/ingrid_profilbild.png" alt="Porträtt av Doris">
-            <h1>Ingrid Holm</h1>
-        </section>
-        <section class="dialog">
-            <p id="dialog-name">Leopold</p>
-            <p id="dialog-text">Ursäkta mig frun?</p>
-        </section>
-        <section id="buttons">
-            <button id="continue-button">Fortsätt</button>
-            <button id="exit-button">Gå vidare</button>
-        </section>
-    </main> 
+
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

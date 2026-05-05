@@ -88,7 +88,7 @@ body {
   left: 0;
   width: 100vw;
   height: 42dvh;
-  display: flex;
+  display: none;
   padding: 10px 16px calc(20px + env(safe-area-inset-bottom));
   box-sizing: border-box;
   border-top: 3px solid gold;
@@ -211,6 +211,221 @@ button {
   }
 }
 
-main {
+/* ===================== */
+/* ROOT / BACKGROUND */
+/* ===================== */
+
+#conversation {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
   display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 40px 20px;
+
+  text-align: center;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at top, #2a2118, #120e0a 80%),
+    url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+}
+
+/* 🔥 vignette */
+#conversation::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.7));
+  pointer-events: none;
+}
+
+
+/* ===================== */
+/* IMAGE + NAME */
+/* ===================== */
+
+#conversationImageBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#conversationImage {
+  width: 160px;
+  border-radius: 6px;
+
+  filter: sepia(0.7) contrast(1.1);
+
+  transform: rotate(-2deg);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.9),
+    0 0 0 2px #8b6f3d,
+    0 0 25px rgba(212,175,55,0.15);
+}
+
+#conversationName {
+  margin-top: 12px;
+
+  font-size: 30px;
+  font-family: "Bodoni Moda", serif;
+
+  color: #d4af37;
+  letter-spacing: 2px;
+
+  text-shadow:
+    0 0 10px rgba(212,175,55,0.6),
+    0 2px 2px rgba(0,0,0,0.8);
+}
+
+
+/* ===================== */
+/* DIALOG BOX */
+/* ===================== */
+
+#conversationBox {
+  width: 100%;
+  max-width: 420px;
+
+  padding: 18px;
+
+  border-radius: 16px;
+  border: 1px solid #d4af37;
+
+  background:
+    linear-gradient(180deg, rgba(70,50,30,0.95), rgba(30,20,10,0.95));
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.7),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
+  backdrop-filter: blur(2px);
+
+  text-align: left;
+
+  box-sizing: border-box;
+
+  max-height: 35vh;
+  overflow-y: auto;
+}
+
+
+/* ===================== */
+/* TEXT */
+/* ===================== */
+
+#dialogName {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  color: #d4af37;
+  margin-bottom: 6px;
+  opacity: 0.9;
+}
+
+#dialogText {
+  color: #eee;
+  line-height: 1.6;
+  font-size: 16px;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+
+/* ===================== */
+/* BUTTON */
+/* ===================== */
+
+#conversationContinue {
+  padding: 14px 32px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  color: white;
+
+  border-radius: 12px;
+  border: 1px solid #d4af37;
+
+  background: linear-gradient(#8a6235, #4a3420);
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 20px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+
+  transition: all 0.2s ease;
+}
+
+#conversationContinue:hover {
+  transform: translateY(-3px) scale(1.02);
+
+  box-shadow:
+    0 15px 30px rgba(0,0,0,0.8);
+}
+
+
+/* ===================== */
+/* MAP BUTTON */
+/* ===================== */
+
+#conversationKarta {
+  display: none;
+  margin-top: 10px;
+
+  padding: 10px 20px;
+
+  font-size: 14px;
+
+  background: transparent;
+  border: 1px solid #777;
+  color: #aaa;
+
+  border-radius: 10px;
+}
+
+
+/* ===================== */
+/* SCROLLBAR (nice touch) */
+/* ===================== */
+
+#conversationBox::-webkit-scrollbar {
+  width: 6px;
+}
+
+#conversationBox::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 10px;
+}
+
+#conversationBox {
+  scrollbar-width: thin;
+}
+
+
+/* ===================== */
+/* ANIMATION */
+/* ===================== */
+
+#conversation {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
