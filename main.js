@@ -10,7 +10,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// 🔵 Spelarens prick
+// Spelarens prick
 let playerCircle = L.circle([55.5833, 13.0333], {
   radius: 10,
   color: "blue",
@@ -18,7 +18,7 @@ let playerCircle = L.circle([55.5833, 13.0333], {
   fillOpacity: 0.9
 }).addTo(map);
 
-// 🔵 Accuracy-ring
+// Accuracy-ring
 let accuracyCircle = L.circle([55.5833, 13.0333], {
   radius: 0,
   color: "blue",
@@ -26,7 +26,7 @@ let accuracyCircle = L.circle([55.5833, 13.0333], {
   fillOpacity: 0.1
 }).addTo(map);
 
-// 🧍 NPCs (RÄTT ORDNING)
+// NPCs
 const npcs = [
   {
     id: "ingrid",
@@ -75,7 +75,7 @@ const npcs = [
 ];
 
 // =====================
-// 🧠 NPC STATE
+// NPC STATE
 // =====================
 
 let currentNPCIndex = 0;
@@ -105,7 +105,7 @@ function showCurrentNPC() {
 showCurrentNPC();
 
 // =====================
-// 🧠 DIALOG SYSTEM
+//  DIALOG SYSTEM
 // =====================
 
 let typingInterval;
@@ -152,7 +152,7 @@ function showNPCDialog(npc) {
 }
 
 // =====================
-// 📏 DISTANCE CHECK
+// DISTANCE CHECK
 // =====================
 
 function checkDistance(playerPos) {
@@ -166,7 +166,7 @@ function checkDistance(playerPos) {
 }
 
 // =====================
-// 📍 GPS
+// GPS
 // =====================
 
 navigator.geolocation.watchPosition(
@@ -184,7 +184,7 @@ navigator.geolocation.watchPosition(
 );
 
 // =====================
-// 🖱️ DIALOG INTERACTION
+// DIALOG INTERACTION
 // =====================
 
 dialogBox.addEventListener("click", () => {
@@ -198,7 +198,7 @@ dialogBox.addEventListener("click", () => {
 });
 
 // =====================
-// 🔄 NEXT NPC
+//  NEXT NPC
 // =====================
 
 function nextNPC() {
@@ -219,7 +219,7 @@ function nextNPC() {
 }
 
 // =====================
-// 🧪 TEST NPC
+// TEST NPC
 // =====================
 
 function testNPC(id) {
@@ -234,7 +234,7 @@ function testNPC(id) {
 }
 
 // =====================
-// 🎮 PRATA-KNAPP
+// PRATA-KNAPP
 // =====================
 
 const talkButton = document.getElementById("talk_doris");
