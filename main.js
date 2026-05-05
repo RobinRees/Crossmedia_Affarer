@@ -244,3 +244,5 @@ if (talkButton) {
     nextNPC();
   });
 }
+
+//SKA NU MERGA FÖRSÖKA BYGGA OM
