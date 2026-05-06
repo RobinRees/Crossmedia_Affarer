@@ -123,23 +123,37 @@ let isTyping = false;
 let currentText = "";
 
 function typeWriter(text, element, speed = 25) {
+
+  // resetta allt först
   clearInterval(typingInterval);
 
-  element.innerHTML = "";
-  currentText = text;
   isTyping = true;
+  currentText = text;
+
+  element.innerHTML = "";
 
   let i = 0;
 
   typingInterval = setInterval(() => {
-    element.innerHTML = text.slice(0, i);
+
+    element.innerHTML = text.substring(0, i);
+
     i++;
 
     if (i > text.length) {
+
       clearInterval(typingInterval);
+
+      element.innerHTML = text;
+
       isTyping = false;
-      buttons.style.visibility = "visible";
+
+      // bara intro-dialogen använder buttons
+      if (buttons && dialogBox.style.display === "flex") {
+        buttons.style.visibility = "visible";
+      }
     }
+
   }, speed);
 }
 
@@ -223,7 +237,7 @@ function nextNPC() {
 }
 
 // =====================
-// PRATA-KNAPP (FIXAD)
+// PRATA-KNAPP
 // =====================
 
 const talkButton = document.querySelector(".talk");
@@ -236,7 +250,7 @@ talkButton.addEventListener("click", () => {
   dialogBox.style.display = "none";
   document.getElementById("conversation").style.display = "flex";
 
-  // ✅ rätt bild + namn
+  // rätt bild + namn
   conversationImage.src = npc.icon;
   conversationName.textContent = npc.name;
 
@@ -258,15 +272,30 @@ const conversationImage = document.getElementById("conversationImage");
 const conversationName = document.getElementById("conversationName");
 
 function startConversation(dialog) {
+
+  // stoppa gammal typing
+  clearInterval(typingInterval);
+  isTyping = false;
+
   activeDialog = dialog;
   currentIndex = 0;
 
   continueBtn.style.display = "block";
-  if (kartaBtn) kartaBtn.style.display = "none";
 
-  // 🔥 koppla NPC → UI
+  // 🔥 förhindra instant click från samma touch
+  continueBtn.style.pointerEvents = "none";
+
+  setTimeout(() => {
+    continueBtn.style.pointerEvents = "auto";
+  }, 300);
+
+  if (kartaBtn) {
+    kartaBtn.style.display = "none";
+  }
+
+  // koppla NPC → UI
   if (activeNPC) {
-    conversationImage.src = activeNPC.icon; // eller icon
+    conversationImage.src = activeNPC.icon;
     conversationName.textContent = activeNPC.name;
   }
 
@@ -277,15 +306,35 @@ function updateDialog() {
   const current = activeDialog[currentIndex];
   if (!current) return;
 
-  dialogNameEl.textContent = current.type === "info" ? "" : current.name;
-  dialogTextEl.textContent = current.line;
+  dialogNameEl.textContent =
+    current.type === "info" ? "" : current.name;
+
+  // typewriter även i conversation
+  setTimeout(() => {
+    typeWriter(current.line, dialogTextEl, 32);
+  }, 10);
 }
 
-// fortsätt
+// =====================
+// FORTSÄTT
+// =====================
+
 continueBtn.addEventListener("click", () => {
+
+  // om text fortfarande skrivs → visa hela direkt
+  if (isTyping) {
+    clearInterval(typingInterval);
+
+    dialogTextEl.innerHTML = currentText;
+
+    isTyping = false;
+    return;
+  }
+
   currentIndex++;
 
   if (currentIndex >= activeDialog.length) {
+
     continueBtn.style.display = "none";
 
     if (kartaBtn) {
@@ -301,7 +350,10 @@ continueBtn.addEventListener("click", () => {
   updateDialog();
 });
 
-// tillbaka till karta
+// =====================
+// TILLBAKA TILL KARTA
+// =====================
+
 if (kartaBtn) {
   kartaBtn.addEventListener("click", () => {
     document.getElementById("conversation").style.display = "none";
@@ -309,6 +361,10 @@ if (kartaBtn) {
     nextNPC();
   });
 }
+
+// =====================
+// TEST NPC
+// =====================
 
 function testNPC(id) {
   const npc = npcs.find(n => n.id === id);
@@ -321,6 +377,6 @@ function testNPC(id) {
   // sätt som aktiv NPC
   activeNPC = npc;
 
-  // visa lilla dialogrutan (som om du gick nära)
+  // visa lilla dialogrutan
   showNPCDialog(npc);
 }
