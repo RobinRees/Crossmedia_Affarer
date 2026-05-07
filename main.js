@@ -78,8 +78,19 @@ const npcs = [
     paperdoll: "Images/Paperdoll/dorisNew.png",
     text: `Doris ser nervös ut, som att hon bär på en hemlighet.<br><br>“Jag såg något vid vattnet den morgonen... något som inte borde varit där.”`,
     dialog: dialogDoris
+  },
+  {
+    id: "ending",
+    name: "Gissning",
+    isEnding: true,
+    coords: [55.6057, 13.0013],
+    radius: 50,
+    visited: false,
+    icon: "images/Paperdoll/August.png",
+    text: `Snipp snapp slut`,
   }
 ];
+
 
 // =====================
 // NPC STATE
@@ -164,6 +175,13 @@ const buttons = document.getElementById("buttons");
 const paperdoll = document.querySelector("#paperdollImage img");
 
 function showNPCDialog(npc) {
+
+  // HÄR SKAPAR JAG ENDING.
+  if (npc.isEnding) {
+    
+  }
+
+
   activeNPC = npc;
 
   dialogBox.style.display = "flex";
@@ -282,7 +300,6 @@ function startConversation(dialog) {
 
   continueBtn.style.display = "block";
 
-  // 🔥 förhindra instant click från samma touch
   continueBtn.style.pointerEvents = "none";
 
   setTimeout(() => {
