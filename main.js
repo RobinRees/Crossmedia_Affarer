@@ -380,3 +380,7 @@ function testNPC(id) {
   // visa lilla dialogrutan
   showNPCDialog(npc);
 }
+
+document.getElementById("testButton").addEventListener("click", () => {
+  testNPC("ingrid");
+})
