@@ -484,3 +484,12 @@ filter:
   left: 100px;
   bottom: 100px;
 }
+
+#endingScreen {
+  background-image: url(./Images/textures/paperBackground4.jpg);
+  width: 100dvw;
+  height: 30dvh;
+  position: absolute;
+  bottom:0
+
+}
