@@ -97,6 +97,13 @@ const npcs = [
 // =====================
 
 let currentNPCIndex = 0;
+
+const savedProgress = localStorage.getItem("npcProgress");
+
+if (savedProgress !== null) {
+  currentNPCIndex = parseInt(savedProgress);
+}
+
 let currentMarker = null;
 let activeNPC = null;
 
@@ -199,7 +206,7 @@ function showNPCDialog(npc) {
     }else {
       talkButton.style.display = "block";
       endingBtn.style.display = "none";
-      ignoreButton.style.dispay = "block"
+      ignoreButton.style.display = "block"
     }
   
 }
@@ -260,6 +267,8 @@ function nextNPC() {
   dialogBox.style.display = "none";
 
   currentNPCIndex++;
+
+  localStorage.setItem("npcProgress", currentNPCIndex)
 
   if (currentNPCIndex < npcs.length) {
     showCurrentNPC();
@@ -431,3 +440,12 @@ map.on("click", function (e) {
   console.log(`[${lat}, ${lng}]`);
 
 });
+
+function resetGame() {
+
+  localStorage.removeItem(
+    "npcProgress"
+  );
+
+  location.reload();
+}
