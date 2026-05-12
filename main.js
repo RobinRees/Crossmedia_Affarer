@@ -86,7 +86,7 @@ const npcs = [
     coords: [55.6088, 12.9948],
     radius: 50,
     visited: false,
-    icon: "images/Paperdoll/letter.jpg",
+    icon: "images/Paperdoll/ending-letter.jpg",
     text: `Snipp snapp slut`,
   }
 ];
@@ -203,12 +203,12 @@ function showNPCDialog(npc) {
     talkButton.style.display = "none";
     endingBtn.style.display = "block";
     ignoreButton.style.display = "none"
-    }else {
-      talkButton.style.display = "block";
-      endingBtn.style.display = "none";
-      ignoreButton.style.display = "block"
-    }
-  
+  } else {
+    talkButton.style.display = "block";
+    endingBtn.style.display = "none";
+    ignoreButton.style.display = "block"
+  }
+
 }
 
 // =====================
