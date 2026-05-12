@@ -81,13 +81,13 @@ const npcs = [
   },
   {
     id: "ending",
-    name: "Gissning",
+    name: "Ange skyldig/skyldiga",
     isEnding: true,
     coords: [55.6088, 12.9948],
     radius: 50,
     visited: false,
     icon: "images/Paperdoll/ending-letter.jpg",
-    text: `Snipp snapp slut`,
+    text: `Tiden är knapp, ange vem eller vilka som är skyldiga!`,
   }
 ];
 
