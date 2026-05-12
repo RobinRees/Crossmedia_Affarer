@@ -86,7 +86,7 @@ const npcs = [
     coords: [55.6088, 12.9948],
     radius: 50,
     visited: false,
-    icon: "images/Paperdoll/letter.png",
+    icon: "images/Paperdoll/letter.jpg",
     text: `Snipp snapp slut`,
   }
 ];
