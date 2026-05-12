@@ -228,10 +228,11 @@ function checkDistance(playerPos) {
 // =====================
 // GPS
 // =====================
-
+let latestPlayerPos = null;
 navigator.geolocation.watchPosition(
   pos => {
     const playerPos = [pos.coords.latitude, pos.coords.longitude];
+    latestPlayerPos = playerPos;
 
     playerCircle.setLatLng(playerPos);
     accuracyCircle.setLatLng(playerPos);
@@ -449,3 +450,18 @@ function resetGame() {
 
   location.reload();
 }
+document
+  .getElementById("gpsButton")
+  .addEventListener("click", () => {
+
+    if (!latestPlayerPos) return;
+
+    map.flyTo(
+      latestPlayerPos,
+      17,
+      {
+        duration: 1.5
+      }
+    );
+
+  });

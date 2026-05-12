@@ -464,12 +464,9 @@ filter:
   #conversationContinue,
   #conversationKarta {
     align-self: flex-end;
-
     margin-right: 22px;
     margin-top: 12px;
-
     padding: 12px 24px;
-
     font-size: 16px;
   }
 
@@ -485,3 +482,50 @@ filter:
   bottom: 100px;
 }
 
+#gpsButton {
+
+  position: fixed;
+
+  right: 20px;
+  bottom: 140px;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  background: rgba(40,40,40,0.9);
+
+  color: white;
+
+  font-size: 26px;
+
+  z-index: 1200;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.35);
+
+  flex: unset;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  line-height: 1;
+
+  transition: 0.2s ease;
+}
+
+#gpsButton:hover {
+  transform: scale(1.05);
+}
+
+#gpsButton:active {
+  transform: scale(0.95);
+}
