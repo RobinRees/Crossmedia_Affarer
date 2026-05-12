@@ -83,7 +83,7 @@ const npcs = [
     id: "ending",
     name: "Gissning",
     isEnding: true,
-    coords: [55.6057, 13.0013],
+    coords: [55.6088, 12.9948],
     radius: 50,
     visited: false,
     icon: "images/Paperdoll/August.png",
@@ -99,6 +99,7 @@ const npcs = [
 let currentNPCIndex = 0;
 let currentMarker = null;
 let activeNPC = null;
+
 
 // =====================
 // Visa NPC
@@ -174,12 +175,12 @@ const dialogEl = document.getElementById("dialog");
 const buttons = document.getElementById("buttons");
 const paperdoll = document.querySelector("#paperdollImage img");
 
+const endingBtn = document.getElementById("endingButton");
+const ignoreButton = document.querySelector(".ignore");
+
 function showNPCDialog(npc) {
 
   // HÄR SKAPAR JAG ENDING.
-  if (npc.isEnding) {
-    
-  }
 
 
   activeNPC = npc;
@@ -190,6 +191,17 @@ function showNPCDialog(npc) {
 
   buttons.style.visibility = "hidden";
   typeWriter(npc.text, dialogEl);
+
+  if (npc.isEnding) {
+    talkButton.style.display = "none";
+    endingBtn.style.display = "block";
+    ignoreButton.style.display = "none"
+    }else {
+      talkButton.style.display = "block";
+      endingBtn.style.display = "none";
+      ignoreButton.style.dispay = "block"
+    }
+  
 }
 
 // =====================
@@ -401,3 +413,21 @@ function testNPC(id) {
 document.getElementById("testButton").addEventListener("click", () => {
   testNPC("ingrid");
 })
+
+
+/* Ending */
+
+endingBtn.addEventListener("click", () => {
+
+  window.location.href = "./ending/ending.html";
+
+});
+
+map.on("click", function (e) {
+
+  const lat = e.latlng.lat.toFixed(4);
+  const lng = e.latlng.lng.toFixed(4);
+
+  console.log(`[${lat}, ${lng}]`);
+
+});
