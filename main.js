@@ -206,7 +206,7 @@ function showNPCDialog(npc) {
   } else {
     talkButton.style.display = "block";
     endingBtn.style.display = "none";
-    ignoreButton.style.display = "block"
+    ignoreButton.style.display = "none"
   }
 
 }
