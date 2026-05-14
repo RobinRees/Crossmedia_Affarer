@@ -1,6 +1,6 @@
 // https://leafletjs.com/reference.html
 
-alert("LocalStorage efix");
+
 
 // 🗺️ Starta karta (Malmö)
 const map = L.map("map").setView([55.5833, 13.0333], 15);
