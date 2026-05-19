@@ -17,7 +17,7 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 8vh;
+  height: 12vh;
   text-align: center;
   z-index: 1000;
   background-image: url(./Images/textures/paperBackground4.jpg);
@@ -58,6 +58,11 @@ body {
   object-position: center 20%;
   transform: scale(1.8);
   /*  /* flyttar fokus upp mot ansiktet */
+}
+
+.npc-wrapper img[src*="ending"] {
+  transform-origin: center 20%;
+  transform: scale(5.0);
 }
 
 .npc-wrapper.ingrid img {
@@ -387,12 +392,12 @@ button {
 
   color: white;
 
-  padding: 13px 26px;
+  padding: 12px 24px;
 
   border-radius: 16px;
   border: none;
 
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
 
   box-shadow:
@@ -403,7 +408,7 @@ button {
 
   cursor: pointer;
 
-  min-width: 120px;
+  /* min-width: 100%; */
   text-align: center;
 }
 
