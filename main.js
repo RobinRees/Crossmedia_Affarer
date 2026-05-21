@@ -34,13 +34,13 @@ const npcs = [
   {
     id: "ingrid",
     name: "Ingrid",
-    coords: [55.5901, 12.9937],
+    coords: [55.5921, 12.9949],
     radius: 50,
     visited: false,
     color: "red",
     icon: "Images/Paperdoll/ingrid.png",
     paperdoll: "Images/Paperdoll/ingridNew.png",
-    text: `Ingrid möter din blick utan att tveka, men hennes händer är knäppta hårt.<br><br>“Folk pratar för mycket… och lyssnar för lite. Ibland är sanningen farligare än lögnen.”`,
+    text: `“Hur kan man ens skita ner ett nattlinne på detta viset?! Bor dom i en svinstia?!”`,
     dialog: dialogIngrid
   },
   {
@@ -52,7 +52,7 @@ const npcs = [
     color: "gold",
     icon: "Images/Paperdoll/gustaf.png",
     paperdoll: "Images/Paperdoll/gustavNew.png",
-    text: `Gustaf står stilla, med en blick som väger varje ord du säger.<br><br>“Det som hände var ingen olycka. Någon såg till att det blev så… frågan är vem som tjänar på det.”`,
+    text: `Gustaf står stilla, med en blick som väger varje ord du säger.<br><br>“Hm… ännu en dag med dessa förbaskade rör.”`,
     dialog: dialogGustaf
   },
   {
@@ -64,7 +64,7 @@ const npcs = [
     color: "blue",
     icon: "Images/Paperdoll/August.png",
     paperdoll: "Images/Paperdoll/augustNew.png",
-    text: `August lutar sig lätt tillbaka, som om han redan vet mer än han säger.<br><br>“Alla spelar ett spel här… vissa är bara bättre på att dölja reglerna.”`,
+    text: `August lutar sig lätt tillbaka, som om han redan vet mer än han säger.<br><br>“Jistanes, är klockan redan så mycket?! Jag måste skynda mig!”`,
     dialog: dialogAugust
   },
   {
@@ -76,7 +76,7 @@ const npcs = [
     color: "purple",
     icon: "Images/Paperdoll/doris.png",
     paperdoll: "Images/Paperdoll/dorisNew.png",
-    text: `Doris ser nervös ut, som att hon bär på en hemlighet.<br><br>“Jag såg något vid vattnet den morgonen... något som inte borde varit där.”`,
+    text: `Doris ser nervös ut, som att hon bär på en hemlighet.<br><br>“Ursäkta herrn?”`,
     dialog: dialogDoris
   },
   {
