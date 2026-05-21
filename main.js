@@ -34,7 +34,7 @@ const npcs = [
   {
     id: "ingrid",
     name: "Ingrid",
-    coords: [55.5901, 12.9937],
+    coords: [55.5921, 12.9949],
     radius: 50,
     visited: false,
     color: "red",
