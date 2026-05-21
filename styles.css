@@ -22,7 +22,7 @@ body {
   z-index: 1000;
   background-image: url(./Images/textures/paperBackground4.jpg);
   background-size: contain;
-  border-bottom: 2px solid gold;
+  border-bottom: 2px solid white;
 }
 
 
@@ -47,7 +47,7 @@ body {
   height: 70px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid gold;
+  border: 3px solid white;
   animation: pulse 2s infinite;
 }
 
@@ -105,8 +105,9 @@ body {
   display: none;
   padding: 10px 16px calc(20px + env(safe-area-inset-bottom));
   box-sizing: border-box;
-  border-top: 3px solid gold;
+  border-top: 3px solid white;
   background-image: url(./Images/textures/paperBackground4.jpg);
+
   background-size: contain;
   z-index: 1500;
 }
@@ -156,7 +157,7 @@ body {
 }
 
 #name {
-  color: gold;
+  color: white;
   font-size: 30px;
   margin: 0;
   background-color: rgba(0, 0, 0, 0.089);
