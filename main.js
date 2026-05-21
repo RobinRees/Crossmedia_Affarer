@@ -40,7 +40,7 @@ const npcs = [
     color: "red",
     icon: "Images/Paperdoll/ingrid.png",
     paperdoll: "Images/Paperdoll/ingridNew.png",
-    text: `“Hur kan man ens skita ner ett nattlinne på detta viset?! Bor dom i en svinstia?!”`,
+    text: `Ingrid står vid tvätten med armarna i kors och ett irriterat muttrande för sig själv.<br><br>“Hur kan folk skita ner kläder på detta viset? Det är som om de bor i en svinstia!”`,
     dialog: dialogIngrid
   },
   {
@@ -52,7 +52,7 @@ const npcs = [
     color: "gold",
     icon: "Images/Paperdoll/gustaf.png",
     paperdoll: "Images/Paperdoll/gustavNew.png",
-    text: `Gustaf står stilla, med en blick som väger varje ord du säger.<br><br>“Hm… ännu en dag med dessa förbaskade rör.”`,
+    text: `Gustaf står lutad över några gamla rör med sotiga händer och en trött blick.<br><br>“De här ledningarna kommer bli döden för mig en dag…”`,
     dialog: dialogGustaf
   },
   {
@@ -64,7 +64,7 @@ const npcs = [
     color: "blue",
     icon: "Images/Paperdoll/August.png",
     paperdoll: "Images/Paperdoll/augustNew.png",
-    text: `August lutar sig lätt tillbaka, som om han redan vet mer än han säger.<br><br>“Jistanes, är klockan redan så mycket?! Jag måste skynda mig!”`,
+    text: `August rättar till sin rock och kastar en snabb blick mot klockan.<br><br>“Jistanes… jag har egentligen inte tid att stå här och drälla.”`,
     dialog: dialogAugust
   },
   {
@@ -76,7 +76,7 @@ const npcs = [
     color: "purple",
     icon: "Images/Paperdoll/doris.png",
     paperdoll: "Images/Paperdoll/dorisNew.png",
-    text: `Doris ser nervös ut, som att hon bär på en hemlighet.<br><br>“Ursäkta herrn?”`,
+    text: `Doris håller hårt i sin väska och verkar nästan redo att gå därifrån.<br><br>“Ursäkta… behöver herrn någonting från apoteket?”`,
     dialog: dialogDoris
   },
   {

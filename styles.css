@@ -546,3 +546,8 @@ button {
 #gpsButton:active {
   transform: scale(0.95);
 }
+
+#endingButton {
+  background: #0a8f1f;
+  color: white;
+}
