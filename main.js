@@ -1,11 +1,6 @@
 // https://leafletjs.com/reference.html
-
-
-
-// 🗺️ Starta karta (Malmö)
 const map = L.map("map").setView([55.5833, 13.0333], 15);
 
-// 🌍 Karta
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
@@ -25,10 +20,6 @@ let accuracyCircle = L.circle([55.5833, 13.0333], {
   fillColor: "blue",
   fillOpacity: 0.1
 }).addTo(map);
-
-// =====================
-// NPCs
-// =====================
 
 const npcs = [
   {
